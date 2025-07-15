@@ -29,8 +29,8 @@ const words = [
 ];
 
 const counterItems = [
+    { value: 2, suffix:"", label: "Professional Frontend Certifications" },
     { value: 3, suffix:" ✅", label: "Internships Completed" },
-    { value: 1, suffix:" ✅", label: "Professional Frontend Certificate" },
     { value: 10, suffix: "+", label: "Completed Projects" },
     { value: 100, suffix: "%", label: "Committed to Learning" },
 ];
@@ -74,18 +74,18 @@ const logoIconsList = [
 const abilities = [
     {
         imgPath: "/images/seo.png",
-        title: "Quality Focus",
-        desc: "Delivering high-quality results while maintaining attention to every detail.",
+        title: "Responsive & Adaptive Design",
+        desc: "Building pixel-perfect, cross-device interfaces with Tailwind CSS and Next.js, delivering seamless user experiences on all platforms.",
+    },
+    {
+        imgPath: "/images/person.png",
+        title: "Dynamic User Interfaces",
+        desc: "Creating real-time, API-driven UIs with React and NextJS.",
     },
     {
         imgPath: "/images/chat.png",
         title: "Reliable Communication",
         desc: "Keeping you updated at every step to ensure transparency and clarity.",
-    },
-    {
-        imgPath: "/images/time.png",
-        title: "On-Time Delivery",
-        desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
     },
 ];
 
