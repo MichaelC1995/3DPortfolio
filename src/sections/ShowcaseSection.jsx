@@ -7,59 +7,81 @@ gsap.registerPlugin(ScrollTrigger)
 
 const ShowcaseSection = () => {
     const sectionRef = useRef(null);
-    const project1Ref = useRef(null);
-    const project2Ref = useRef(null);
-    const project3Ref = useRef(null);
-
 
     useGSAP(() => {
-        const projects = [project1Ref.current, project2Ref.current, project3Ref.current];
-        projects.forEach((card, index) => {
-            gsap.fromTo(
-                card, {
-                    y: 50, opacity: 0,
-                },
+        const ctx = gsap.context(() => {
+            // 🔧 PERFORMANCE FIX: Use class selectors instead of individual refs
+            const projects = gsap.utils.toArray(".showcase-project");
+
+            projects.forEach((project, index) => {
+                gsap.fromTo(
+                    project,
+                    {
+                        y: 50,
+                        opacity: 0,
+                    },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8, // Reduced duration
+                        delay: 0.1 * index, // Reduced delay
+                        scrollTrigger: {
+                            trigger: project,
+                            start: 'top 80%', // Start earlier
+                            once: true, // 🔧 CRITICAL: Only animate once
+                        }
+                    }
+                );
+            });
+
+            // Section fade-in
+            gsap.fromTo(sectionRef.current,
+                {opacity: 0},
                 {
-                    y: 0,
                     opacity: 1,
                     duration: 1,
-                    delay: 0.2 * (index + 1),
                     scrollTrigger: {
-                        trigger: card,
-                        start: 'top bottom-=100'
+                        trigger: sectionRef.current,
+                        start: "top 90%",
+                        once: true,
                     }
                 }
-            )
-        })
-        gsap.fromTo(sectionRef.current, {opacity: 0}, {opacity: 1, duration: 1.5});
-    }, [])
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, {scope: sectionRef});
 
     return (
-        <section id={"work"} ref={sectionRef} className={"app-showcase"}>
-            <div className={"w-full"}>
-                <div className={"showcaselayout"}>
-                    <div className={"first-project-wrapper"} ref={project1Ref}>
-                        <div className={"image-wrapper"}>
-                            <img src={"/images/project1.png"} alt="Summarist"/>
+        <section id="work" ref={sectionRef} className="app-showcase">
+            <div className="w-full">
+                <div className="showcaselayout">
+                    <div className="first-project-wrapper showcase-project">
+                        <div className="image-wrapper">
+                            <a href={"https://summarist-internship-one.vercel.app"} target={"_blank"}>
+                                <img src="/images/project1.png" alt="Summarist"/>
+                            </a>
                         </div>
-                        <div className={"text-content"}>
+                        <div className="text-content">
                             <h2>Summarist: Your Ultimate Book Summary Companion</h2>
-                            <p className={"text-white-50 md:text-xl"}>Dive into the world of knowledge with Summarist,
+                            <p className="text-white-50 md:text-xl">Dive into the world of knowledge with Summarist,
                                 the innovative app designed for busy book lovers who crave the essence of great reads
                                 without the time commitment.</p>
-                            <p className={"text-white-50 md:text-xl"}>Framework: Next.js (version 13+, with App
+                            <p className="text-white-50 md:text-xl">Framework: Next.js (version 13+, with App
                                 Router).</p>
-                            <p className={"text-white-50 md:text-xl"}>Languages: JavaScript, TypeScript.</p>
-                            <p className={"text-white-50 md:text-xl"}>Styling: CSS Modules, Global CSS, PostCSS,
+                            <p className="text-white-50 md:text-xl">Languages: JavaScript, TypeScript.</p>
+                            <p className="text-white-50 md:text-xl">Styling: CSS Modules, Global CSS, PostCSS,
                                 Tailwind CSS.</p>
-                            <p className={"text-white-50 md:text-xl"}>Build Tool: Turbopack.</p>
-                            <p className={"text-white-50 md:text-xl"}>Payment Processing: Stripe.</p>
+                            <p className="text-white-50 md:text-xl">Build Tool: Turbopack.</p>
+                            <p className="text-white-50 md:text-xl">Payment Processing: Stripe.</p>
                         </div>
                     </div>
-                    <div className={"project-list-wrapper overflow-hidden"}>
-                        <div className={"project"} ref={project2Ref}>
-                            <div className={"image-wrapper bg-[#ffefdb]"}>
-                                <img src={"/images/project2.png"} alt="Skinstric"/>
+                    <div className="project-list-wrapper overflow-hidden">
+                        <div className="project showcase-project">
+                            <div className="image-wrapper bg-[#ffefdb]">
+                                <a href={"https://skinstric-a-i-internship.vercel.app"} target={"_blank"}>
+                                    <img src="/images/project2.png" alt="Skinstric"/>
+                                </a>
                             </div>
                             <h2>Skinstric: Revolutionize Your Skincare with AI-Powered Precision</h2>
                             <p>Skinstric is a cutting-edge web application that leverages artificial intelligence to
@@ -68,9 +90,11 @@ const ShowcaseSection = () => {
                                 to presenting demographic predictions. Below is the technology stack that powers
                                 Skinstric:</p>
                         </div>
-                        <div className={"project"} ref={project3Ref}>
-                            <div className={"image-wrapper bg-[#ffefdb]"}>
-                                <img src={"/images/project3.png"} alt="Skinstric"/>
+                        <div className="project showcase-project">
+                            <div className="image-wrapper bg-[#ffefdb]">
+                                <a href={"https://michael-internship-eight.vercel.app"} target={"_blank"}>
+                                    <img src="/images/project3.png" alt="Ultraverse"/>
+                                </a>
                             </div>
                             <h2>Ultraverse: the Ultimate NFT Market</h2>
                             <p>Ultraverse creates a user-friendly environment designed to seamlessly create, sell, or
@@ -82,4 +106,5 @@ const ShowcaseSection = () => {
         </section>
     )
 }
-export default ShowcaseSection
+
+export default ShowcaseSection;

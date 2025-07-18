@@ -263,7 +263,7 @@ section {
     }
 
     .tech-card-content {
-        @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
+        @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10;
 
         & p {
             @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
@@ -319,6 +319,23 @@ section {
                 @apply inline-block;
             }
         }
+    }
+}
+
+/* Enhanced responsive timeline positioning */
+@media (max-width: 1280px) {
+    .timeline-wrapper {
+        left: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline-wrapper {
+        left: 1.25rem;
+    }
+
+    .timeline {
+        width: 3rem;
     }
 }
 
@@ -469,4 +486,9 @@ section {
 
 .card:hover::before {
     opacity: 1;
+}
+
+/* Smooth section transitions */
+section {
+    transition: opacity 0.6s ease;
 }

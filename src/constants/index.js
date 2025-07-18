@@ -30,7 +30,7 @@ const words = [
 
 const counterItems = [
     { value: 2, suffix:"", label: "Professional Frontend Certifications" },
-    { value: 3, suffix:" ✅", label: "Internships Completed" },
+    { value: 3, suffix:"", label: "Internships Completed" },
     { value: 10, suffix: "+", label: "Completed Projects" },
     { value: 100, suffix: "%", label: "Committed to Learning" },
 ];
@@ -91,24 +91,44 @@ const abilities = [
 
 const techStackImgs = [
     {
-        name: "React Developer",
+        name: "React",
         imgPath: "/images/logos/react.png",
     },
     {
-        name: "Python Developer",
-        imgPath: "/images/logos/python.svg",
+        name: "Vite",
+        imgPath: "/images/logos/vite.png",
     },
     {
-        name: "Backend Developer",
+        name: "Next.JS",
+        imgPath: "/images/logos/nextjs.png",
+    },
+    {
+        name: "Node.JS",
         imgPath: "/images/logos/node.png",
     },
     {
-        name: "Interactive Developer",
-        imgPath: "/images/logos/three.png",
+        name: "TypeScript",
+        imgPath: "/images/logos/typescript.png",
     },
     {
-        name: "Project Manager",
+        name: "Tailwind CSS",
+        imgPath: "/images/logos/tailwindcss.png",
+    },
+    {
+        name: "Git",
         imgPath: "/images/logos/git.svg",
+    },
+    {
+        name: "Figma",
+        imgPath: "/images/logos/figma.png",
+    },
+    {
+        name: "Three.JS",
+        imgPath: "/images/logos/threejs.png",
+    },
+    {
+        name: "Redux",
+        imgPath: "/images/logos/redux.png",
     },
 ];
 
@@ -120,7 +140,7 @@ const techStackIcons = [
         rotation: [0, 0, 0],
     },
     {
-        name: "Python Developer",
+        name: "TypeScript",
         modelPath: "/models/python-transformed.glb",
         scale: 0.8,
         rotation: [0, 0, 0],
@@ -150,36 +170,39 @@ const expCards = [
         review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
         imgPath: "/images/exp1.png",
         logoPath: "/images/logo1.png",
-        title: "Frontend Developer",
-        date: "January 2023 - Present",
+        title: "Frontend Simplified Intern",
+        date: "September 2024 - January 2025",
         responsibilities: [
-            "Developed and maintained user-facing features for the Hostinger website.",
-            "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-            "Optimized web applications for maximum speed and scalability.",
+            "Designed intuitive exploration interface with category-based browsing for art, music, domain names, and collectibles",
+            "Developed author profile system displaying NFT collections, verification status, and social metrics",
+            "Implemented smooth animations using AOS (Animate On Scroll) library for engaging user interactions",
+            "Optimized component architecture with reusable UI components reducing code redundancy",
+            "Implemented lazy loading strategies for images and components improving initial page load.",
         ],
     },
     {
         review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
         imgPath: "/images/exp2.png",
         logoPath: "/images/logo2.png",
-        title: "Full Stack Developer",
-        date: "June 2020 - December 2023",
+        title: "Skinstric A.I. Intern",
+        date: "January 2025 - April 2025",
         responsibilities: [
-            "Led the development of Docker's web applications, focusing on scalability.",
-            "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-            "Contributed to open-source projects that were used with the Docker ecosystem.",
+            "Architected a responsive skincare recommendation platform for Skinstric using React, enhancing user engagement by 20% through AI-driven personalized routines.",
+            "Integrated a third-party AI API for real-time skin analysis using Axios, streamlining personalized routine generation for Skinstric users.",
+            "Crafted reusable UI components, improving development efficiency and ensuring a consistent user interface.",
         ],
     },
     {
         review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
         imgPath: "/images/exp3.png",
         logoPath: "/images/logo3.png",
-        title: "React Native Developer",
-        date: "March 2019 - May 2020",
+        title: "Frontend Simplified Intern",
+        date: "April 2025 - Current",
         responsibilities: [
-            "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-            "Improved app performance and user experience through code optimization and testing.",
-            "Coordinated with the product team to implement features based on feedback.",
+            "Architected and deployed a full-stack Next.js 14 application with Stripe payment integration, serving book summaries with audio playback functionality",
+            "Implemented secure subscription management with Stripe webhooks, handling real-time payment verification and user authentication flows",
+            "Engineered responsive UI with dynamic routing, reducing load times by implementing Next.js chunking strategy and server-side rendering",
+            "Built comprehensive library management system with personalized recommendations, allowing users to save and organize their book collections",
         ],
     },
 ];
