@@ -167,34 +167,35 @@ const techStackIcons = [
 
 const expCards = [
     {
-        review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-        imgPath: "/images/exp1.png",
+        review: "Created a sophisticated NFT marketplace that provides users with seamless discovery experiences. Focused on intuitive design and smooth user interactions.",
+        imgPath: "/images/exp1.jfif",
         logoPath: "/images/logo1.png",
         title: "Frontend Simplified Intern",
         date: "September 2024 - January 2025",
         responsibilities: [
             "Designed intuitive exploration interface with category-based browsing for art, music, domain names, and collectibles",
             "Developed author profile system displaying NFT collections, verification status, and social metrics",
-            "Implemented smooth animations using AOS (Animate On Scroll) library for engaging user interactions",
+            "Implemented smooth animations using Animate On Scroll library for engaging user interactions",
             "Optimized component architecture with reusable UI components reducing code redundancy",
             "Implemented lazy loading strategies for images and components improving initial page load.",
         ],
     },
     {
-        review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-        imgPath: "/images/exp2.png",
+        review: "Developed an innovative AI-powered skincare application that leverages machine learning for personalized beauty recommendations. Successfully integrated third-party AI services and created an intuitive user experience.",
+        imgPath: "/images/exp1.jfif",
         logoPath: "/images/logo2.png",
         title: "Skinstric A.I. Intern",
         date: "January 2025 - April 2025",
         responsibilities: [
-            "Architected a responsive skincare recommendation platform for Skinstric using React, enhancing user engagement by 20% through AI-driven personalized routines.",
-            "Integrated a third-party AI API for real-time skin analysis using Axios, streamlining personalized routine generation for Skinstric users.",
-            "Crafted reusable UI components, improving development efficiency and ensuring a consistent user interface.",
+            "Architected a responsive skincare recommendation platform using React, through AI-driven personalized routines",
+            "Integrated third-party AI API for real-time skin analysis using Axios, streamlining personalized routine generation for users",
+            "Crafted reusable UI components, improving development efficiency and ensuring consistent user interface across the application",
+            "Implemented advanced form validation and user input handling for accurate skin analysis data collection",
         ],
     },
     {
-        review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-        imgPath: "/images/exp3.png",
+        review: "Built a full-stack book summary application with Next.js 14, implementing Stripe payments and audio playback features that enhanced user engagement.",
+        imgPath: "/images/exp1.jfif",
         logoPath: "/images/logo3.png",
         title: "Frontend Simplified Intern",
         date: "April 2025 - Current",
@@ -203,7 +204,8 @@ const expCards = [
             "Implemented secure subscription management with Stripe webhooks, handling real-time payment verification and user authentication flows",
             "Engineered responsive UI with dynamic routing, reducing load times by implementing Next.js chunking strategy and server-side rendering",
             "Built comprehensive library management system with personalized recommendations, allowing users to save and organize their book collections",
-        ],
+            "Integrated RESTful APIs for seamless data management and optimized database queries for improved performance"
+        ]
     },
 ];
 

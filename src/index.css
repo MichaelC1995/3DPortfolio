@@ -238,24 +238,52 @@ section {
         @apply md:w-40 w-32;
     }
 
-    .timeline-wrapper {
-        @apply absolute top-0 xl:left-[35.5vw] md:left-10 left-5 h-full flex justify-center;
-    }
-
-    .timeline {
-        @apply absolute z-30 h-[110%] -top-10 w-14 md:w-28 bg-black;
-    }
-
+    /* Timeline logo styling */
     .timeline-logo {
-        @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
+        @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center border border-black-50 bg-black-100;
+        position: relative;
+        z-index: 50;
+        background: #0e0e10;
+    }
+
+    .timeline-logo img {
+        @apply w-3/4 h-3/4 object-contain;
+    }
+
+    /* Timeline container positioning */
+    .timeline-container {
+        z-index: 20; /* Increased to ensure visibility */
+    }
+
+    /* Continuous timeline wrapper */
+    .continuous-timeline {
+        will-change: transform;
+        z-index: 15; /* Ensure below logos but above background */
+    }
+
+    /* Black background behind gradient line */
+    .continuous-timeline .bg-black {
+        width: 20px; /* Reduced width to avoid covering gradient */
+        height: 100%;
+        background: #0e0e10;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10; /* Below gradient line */
+    }
+
+    /* Experience text content */
+    .expText {
+        @apply relative z-30;
+    }
+
+    /* Timeline card */
+    .timeline-card {
+        @apply relative z-40;
     }
 
     .exp-card-wrapper {
         @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between;
-    }
-
-    .gradient-edge {
-        @apply w-36 h-full absolute bottom-0 z-20;
     }
 
     .tech-card-animated-bg {
@@ -263,7 +291,7 @@ section {
     }
 
     .tech-card-content {
-        @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10;
+        @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
 
         & p {
             @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-white-50 text-center;
@@ -313,29 +341,12 @@ section {
 
             .icon {
                 @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
-            }
 
-            img {
-                @apply inline-block;
+                img {
+                    @apply inline-block;
+                }
             }
         }
-    }
-}
-
-/* Enhanced responsive timeline positioning */
-@media (max-width: 1280px) {
-    .timeline-wrapper {
-        left: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .timeline-wrapper {
-        left: 1.25rem;
-    }
-
-    .timeline {
-        width: 3rem;
     }
 }
 
@@ -379,8 +390,7 @@ section {
     }
 }
 
-/* Hero Text slider ends */
-
+/* Gradient line styling */
 .gradient-line {
     width: 2px;
     background: linear-gradient(
@@ -393,22 +403,61 @@ section {
     );
 }
 
-.gradient-edge:nth-of-type(1) {
-    left: 0;
-    background: rgb(0, 0, 0);
+/* Continuous gradient line styling */
+.gradient-line-continuous {
+    width: 2px !important;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12; /* Above black background, below logos */
     background: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 1) 0%,
-            rgba(255, 255, 255, 0) 100%
+            to bottom,
+            #00ffcc 0%, /* Brighter start for visibility */
+            #62e0ff 25%,
+            #ff5c79 50%,
+            #ff00ff 75%, /* More vibrant magenta */
+            #00ffcc 100%
     );
 }
-.gradient-edge:nth-of-type(2) {
-    right: 0;
-    background: linear-gradient(
-            -90deg,
-            rgba(0, 0, 0, 1) 0%,
-            rgba(255, 255, 255, 0) 100%
-    );
+
+/* Mobile-specific adjustments */
+@media (max-width: 1279px) {
+    .timeline-logo {
+        @apply size-12 md:size-16;
+    }
+    .gradient-line-continuous {
+        width: 1px !important;
+    }
+    .continuous-timeline .bg-black {
+        width: 14px;
+    }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1536px) {
+    .timeline-logo {
+        @apply size-24;
+    }
+    .gradient-line-continuous {
+        width: 3px !important;
+    }
+    .continuous-timeline .bg-black {
+        width: 24px;
+    }
+}
+
+/* Extra large screen adjustments */
+@media (min-width: 1800px) {
+    #experience .xl\:grid-cols-12 {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+/* Ensure section doesn't overflow */
+#experience {
+    overflow: hidden;
 }
 
 /* marquee */
@@ -437,14 +486,15 @@ section {
         left: -100%;
     }
 }
-/* marquee end */
 
+/* card */
 .card {
     --start: 0;
     position: relative;
     z-index: 40;
     overflow: hidden;
     transition: border-color 1s ease-in-out;
+    background: #0e0e10;
 }
 
 .card::before {
@@ -488,7 +538,42 @@ section {
     opacity: 1;
 }
 
-/* Smooth section transitions */
-section {
-    transition: opacity 0.6s ease;
+/* Animation Classes for Experience Section */
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+
+/* Slide from left */
+.animate-on-scroll.slide-from-left {
+    transform: translateX(-100px);
+}
+
+/* Slide from right */
+.animate-on-scroll.slide-from-right {
+    transform: translateX(100px);
+}
+
+/* Slide from bottom (mobile) */
+.animate-on-scroll.slide-from-bottom {
+    transform: translateY(50px);
+}
+
+/* Scale in (for logos) */
+.animate-on-scroll.scale-in {
+    transform: scale(0);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* When element is in view */
+.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+}
+
+/* Optional: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+        transition: none;
+    }
 }
