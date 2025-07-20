@@ -8,7 +8,7 @@ const AnimatedCounter = () => {
             <div className="mx-auto grid-4-cols">
                 {counterItems.map((item, index) => (
                     <div
-                        key={`${item.label}-${index}`} // Use index as fallback for uniqueness
+                        key={`${item.label}-${index}`}
                         className="bg-zinc-900 rounded-lg p-10 flex flex-col justify-center"
                     >
                         <div className="counter-number text-white text-5xl font-bold mb-2">

@@ -31,23 +31,18 @@ const TechStack = () => {
                         trigger: skillsElement,
                         start: "top 80%",
                         once: true,
-                        onEnter: () => console.log("TechStack: ScrollTrigger entered"),
-                        onLeave: () => console.log("TechStack: ScrollTrigger left"),
                     },
                 }
             );
         }, sectionRef);
         return () => {
-            console.log("TechStack: Cleaning up GSAP context");
             ctx.revert();
         };
     }, { scope: sectionRef });
 
-    // Refresh ScrollTrigger after DOM is rendered
     useEffect(() => {
         const timer = setTimeout(() => {
             ScrollTrigger.refresh();
-            console.log("TechStack: ScrollTrigger refreshed");
         }, 100);
         return () => clearTimeout(timer);
     }, []);

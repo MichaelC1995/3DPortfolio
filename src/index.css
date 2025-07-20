@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap?v=20250719d");
 @import "tailwindcss";
 
 :root {
@@ -13,6 +13,9 @@ body {
     color: white;
     scroll-behavior: smooth;
     font-family: "Mona Sans", sans-serif;
+    /* Optimize scroll performance */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 section {
@@ -81,7 +84,7 @@ section {
     }
 
     .hero-layout {
-        @apply relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] flex xl:items-center items-start justify-center;
+        @apply relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] xl:flex xl:items-center xl:justify-between;
     }
 
     .hero-text {
@@ -99,7 +102,28 @@ section {
     }
 
     .hero-3d-layout {
-        @apply xl:w-[70%] w-full h-full min-h-[50vh] absolute xl:-top-20 top-24 xl:-right-20 right-0;
+        @apply w-full h-full min-h-[50vh];
+        /* Optimize rendering on desktop */
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        contain: strict;
+        isolation: isolate;
+    }
+
+    /* Desktop-specific optimizations */
+    @media (min-width: 1280px) {
+        .hero-3d-layout {
+            @apply h-[80vh];
+            position: sticky;
+            top: 10vh;
+        }
+
+        .hero-3d-layout canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
     }
 
     .navbar {
@@ -244,32 +268,49 @@ section {
         position: relative;
         z-index: 50;
         background: #0e0e10;
+        contain: layout style paint;
+        will-change: transform;
+        transition: all 0.3s ease-out;
     }
 
     .timeline-logo img {
         @apply w-3/4 h-3/4 object-contain;
     }
 
+    /* Mobile logo styling (without gradient line) */
+    .timeline-logo-mobile {
+        @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center border border-black-50 bg-black-100;
+        position: relative;
+        z-index: 50;
+        background: #0e0e10;
+    }
+
+    .timeline-logo-mobile img {
+        @apply w-3/4 h-3/4 object-contain;
+    }
+
     /* Timeline container positioning */
     .timeline-container {
-        z-index: 20; /* Increased to ensure visibility */
+        z-index: 20;
+        will-change: transform;
+        transform: translateZ(0);
     }
 
     /* Continuous timeline wrapper */
     .continuous-timeline {
         will-change: transform;
-        z-index: 15; /* Ensure below logos but above background */
+        z-index: 15;
     }
 
     /* Black background behind gradient line */
     .continuous-timeline .bg-black {
-        width: 20px; /* Reduced width to avoid covering gradient */
+        width: 20px;
         height: 100%;
         background: #0e0e10;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 10; /* Below gradient line */
+        z-index: 10;
     }
 
     /* Experience text content */
@@ -280,6 +321,8 @@ section {
     /* Timeline card */
     .timeline-card {
         @apply relative z-40;
+        contain: layout style;
+        transform: translateZ(0);
     }
 
     .exp-card-wrapper {
@@ -350,44 +393,43 @@ section {
     }
 }
 
-/* Hero text slider starts */
+/* Hero text slider */
 .slide {
     display: inline-block;
     flex-direction: column;
     transition: all cubic-bezier(0.71, 0.03, 0.34, 1);
 }
 
-.wrapper {
+.hero-text .wrapper {
     display: flex;
     flex-direction: column;
-    animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
+    animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99) !important;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Disable animation for mobile (GSAP takes over) */
+@media (max-width: 767px) {
+    .hero-text .wrapper {
+        animation: none !important;
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    .hero-text .slide {
+        height: 44px !important;
+    }
 }
 
 @keyframes wordSlider {
-    0% {
-        transform: translateY(0.5%);
-    }
-    12.5% {
-        transform: translateY(-12.5%);
-    }
-    25% {
-        transform: translateY(-25%);
-    }
-    37.5% {
-        transform: translateY(-37.5%);
-    }
-    50% {
-        transform: translateY(-50%);
-    }
-    62.5% {
-        transform: translateY(-62.5%);
-    }
-    75% {
-        transform: translateY(-75%);
-    }
-    87.5% {
-        transform: translateY(-87.5%);
-    }
+    0% { transform: translateY(0.5%); }
+    12.5% { transform: translateY(-12.5%); }
+    25% { transform: translateY(-25%); }
+    37.5% { transform: translateY(-37.5%); }
+    50% { transform: translateY(-50%); }
+    62.5% { transform: translateY(-62.5%); }
+    75% { transform: translateY(-75%); }
+    87.5% { transform: translateY(-87.5%); }
 }
 
 /* Gradient line styling */
@@ -410,20 +452,99 @@ section {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 12; /* Above black background, below logos */
+    z-index: 12;
     background: linear-gradient(
             to bottom,
-            #00ffcc 0%, /* Brighter start for visibility */
+            #00ffcc 0%,
             #62e0ff 25%,
             #ff5c79 50%,
-            #ff00ff 75%, /* More vibrant magenta */
+            #ff00ff 75%,
             #00ffcc 100%
     );
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Gradient line animation styles */
+.gradient-line-animated {
+    transform-origin: top center;
+    will-change: transform;
+    background-size: 100% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 0% 100%;
+    }
+}
+
+/* Logo glow effect base */
+.timeline-logo::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(0, 255, 204, 0.4) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Persistent glow effect */
+.timeline-logo.logo-glow {
+    transform: scale(1.1);
+    border-color: #00ffcc;
+    box-shadow:
+            0 0 20px rgba(0, 255, 204, 0.6),
+            inset 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.timeline-logo.logo-glow::before {
+    opacity: 1;
+}
+
+/* Pulse animation for glowing logos */
+@keyframes logoPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.6),
+        inset 0 0 10px rgba(0, 255, 204, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 255, 204, 0.8),
+        inset 0 0 15px rgba(0, 255, 204, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.6),
+        inset 0 0 10px rgba(0, 255, 204, 0.2);
+    }
+}
+
+.timeline-logo.logo-glow {
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+/* First logo always glows */
+.timeline-logo:first-of-type {
+    transform: scale(1.1);
+    border-color: #00ffcc;
+    box-shadow:
+            0 0 20px rgba(0, 255, 204, 0.6),
+            inset 0 0 10px rgba(0, 255, 204, 0.2);
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+.timeline-logo:first-of-type::before {
+    opacity: 1;
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 1279px) {
-    .timeline-logo {
+    .timeline-logo,
+    .timeline-logo-mobile {
         @apply size-12 md:size-16;
     }
     .gradient-line-continuous {
@@ -458,14 +579,16 @@ section {
 /* Ensure section doesn't overflow */
 #experience {
     overflow: hidden;
+    contain: layout style;
 }
 
-/* marquee */
+/* Marquee */
 .marquee {
     width: 100dvw;
     overflow: hidden;
     position: relative;
 }
+
 .marquee-box {
     display: flex;
     align-items: center;
@@ -475,9 +598,11 @@ section {
     overflow: hidden;
     animation: marquee 60s linear infinite;
 }
+
 .marquee-item {
     float: left;
 }
+
 @keyframes marquee {
     0% {
         left: 0;
@@ -487,7 +612,7 @@ section {
     }
 }
 
-/* card */
+/* Card glow effect */
 .card {
     --start: 0;
     position: relative;
@@ -542,21 +667,27 @@ section {
 .animate-on-scroll {
     opacity: 0;
     transition: all 0.8s ease-out;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 /* Slide from left */
 .animate-on-scroll.slide-from-left {
     transform: translateX(-100px);
+    contain: layout style paint;
 }
 
 /* Slide from right */
 .animate-on-scroll.slide-from-right {
     transform: translateX(100px);
+    contain: layout style paint;
 }
 
 /* Slide from bottom (mobile) */
 .animate-on-scroll.slide-from-bottom {
     transform: translateY(50px);
+    contain: layout style paint;
 }
 
 /* Scale in (for logos) */
@@ -569,11 +700,79 @@ section {
 .animate-on-scroll.animate-in {
     opacity: 1;
     transform: translateX(0) translateY(0) scale(1);
+    will-change: auto;
 }
 
-/* Optional: Respect reduced motion preference */
+/* Mobile layout optimizations */
+@media (max-width: 1279px) {
+    /* Simplified animations for mobile layout */
+    .animate-on-scroll {
+        will-change: opacity;
+        transform: none !important;
+    }
+
+    /* Fade-in only for mobile layout */
+    .animate-on-scroll.slide-from-bottom {
+        transform: none !important;
+        opacity: 0;
+    }
+
+    .animate-on-scroll.animate-in {
+        transform: none !important;
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+    }
+
+    /* Disable timeline logo animations on mobile */
+    .timeline-logo-mobile {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Disable contain property that might cause issues */
+    .timeline-card,
+    .animate-on-scroll {
+        contain: none;
+    }
+
+    /* Force hardware acceleration for mobile layout */
+    .timeline-card,
+    .expText {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+
+    /* Reduce visual effects on mobile layout */
+    .card::before,
+    .glow {
+        display: none;
+    }
+
+    .card:hover::before {
+        opacity: 0;
+    }
+}
+
+/* Disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .animate-on-scroll {
-        transition: none;
+        transition: opacity 0.3s ease-out !important;
+        transform: none !important;
+    }
+
+    .animate-on-scroll.animate-in {
+        opacity: 1;
+    }
+
+    .gradient-line-animated {
+        animation: none !important;
+    }
+
+    .hero-text .wrapper {
+        animation: none !important; /* GSAP handles mobile animation */
+    }
+
+    .timeline-logo {
+        animation: none !important;
     }
 }

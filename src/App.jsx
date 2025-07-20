@@ -10,6 +10,7 @@ import ExperienceSection from "./sections/ExperienceSection.jsx";
 import TechStack from "./sections/TechStack.jsx";
 import Testimonials from "./sections/Testimonials.jsx";
 import Contact from "./sections/Contact.jsx";
+import { usePassiveScroll } from "./hooks/usePassiveScroll.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,15 +18,14 @@ useGLTF.preload("/models/optimized-room.glb");
 useGLTF.preload("/models/computer-optimized-transformed.glb");
 
 const App = () => {
+    usePassiveScroll();
+
     useEffect(() => {
         ScrollTrigger.config({ autoRefreshEvents: "resize,load,visibilitychange" });
         ScrollTrigger.refresh();
-        console.log("App: Active ScrollTriggers:", ScrollTrigger.getAll().length);
         return () => {
-            console.log("App: Active ScrollTriggers before cleanup:", ScrollTrigger.getAll().length);
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
             gsap.killTweensOf("*");
-            console.log("App: Active ScrollTriggers after cleanup:", ScrollTrigger.getAll().length);
         };
     }, []);
 

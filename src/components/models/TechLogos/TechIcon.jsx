@@ -11,20 +11,17 @@ const TechIcon = ({ model }) => {
         if (model.name === 'Interactive Developer') {
             scene.scene.traverse((child) => {
                 if (child.isMesh && child.name === 'Object_5') {
-                    // Store reference for cleanup
                     materialRef.current = new THREE.MeshStandardMaterial({ color: 'white' });
                     child.material = materialRef.current;
                 }
             })
         }
 
-        // 🔧 CLEANUP: Dispose materials and geometries
         return () => {
             if (materialRef.current) {
                 materialRef.current.dispose();
             }
 
-            // Dispose all materials and geometries in the scene
             scene.scene.traverse((child) => {
                 if (child.isMesh) {
                     if (child.geometry) child.geometry.dispose();
@@ -42,7 +39,7 @@ const TechIcon = ({ model }) => {
 
     return (
         <Canvas
-            dpr={[1, 1.5]} // Limit pixel ratio for performance
+            dpr={[1, 1.5]}
             performance={{ min: 0.5 }}
             gl={{
                 antialias: false,

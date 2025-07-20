@@ -10,7 +10,6 @@ const ShowcaseSection = () => {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            // 🔧 PERFORMANCE FIX: Use class selectors instead of individual refs
             const projects = gsap.utils.toArray(".showcase-project");
 
             projects.forEach((project, index) => {
@@ -23,18 +22,17 @@ const ShowcaseSection = () => {
                     {
                         y: 0,
                         opacity: 1,
-                        duration: 0.8, // Reduced duration
-                        delay: 0.1 * index, // Reduced delay
+                        duration: 0.8,
+                        delay: 0.1 * index,
                         scrollTrigger: {
                             trigger: project,
-                            start: 'top 80%', // Start earlier
-                            once: true, // 🔧 CRITICAL: Only animate once
+                            start: 'top 80%',
+                            once: true,
                         }
                     }
                 );
             });
 
-            // Section fade-in
             gsap.fromTo(sectionRef.current,
                 {opacity: 0},
                 {
@@ -87,8 +85,8 @@ const ShowcaseSection = () => {
                             <p>Skinstric is a cutting-edge web application that leverages artificial intelligence to
                                 deliver personalized skincare insights through facial analysis. Built with a modern,
                                 scalable tech stack, the app provides a seamless user experience, from capturing images
-                                to presenting demographic predictions. Below is the technology stack that powers
-                                Skinstric:</p>
+                                to presenting demographic predictions.
+                            </p>
                         </div>
                         <div className="project showcase-project">
                             <div className="image-wrapper bg-[#ffefdb]">

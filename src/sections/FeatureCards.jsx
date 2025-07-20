@@ -4,11 +4,11 @@ import { abilities } from "../constants/index.js";
 const FeatureCards = () => {
     return (
         <div className={"w-full padding-x-lg"}>
-            <div className={"mx-auto grid-3-cols"}>
+            <div className={"mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl"}>
                 {abilities.map(({ imgPath, title, desc}) => (
-                    <div key={title} className={"card-border rounded-xl p-8 flex flex-col gap-4"}>
+                    <div key={title} className={"card-border rounded-xl p-8 flex flex-col gap-4 h-full"}>
                         <div className={"size-14 flex items-center justify-center rounded-full"}>
-                            <img src={imgPath} alt="title" />
+                            <img src={imgPath} alt={title} />
                         </div>
                         <h3 className={"text-white text-2xl font-semibold mt-2"}>{title}</h3>
                         <p className={"text-white-50"}>{desc}</p>
