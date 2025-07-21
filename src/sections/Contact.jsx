@@ -61,7 +61,7 @@ const Contact = () => {
                                         name="name"
                                         value={form.name}
                                         onChange={handleChange}
-                                        placeholder="What’s your name?"
+                                        placeholder="What’s your good name?"
                                         required
                                     />
                                 </div>

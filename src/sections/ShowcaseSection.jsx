@@ -1,108 +1,88 @@
-import React, {useRef} from 'react'
-import {gsap} from "gsap";
-import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {useGSAP} from "@gsap/react";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-const ShowcaseSection = () => {
+const AppShowcase = () => {
     const sectionRef = useRef(null);
+    const rydeRef = useRef(null);
+    const libraryRef = useRef(null);
+    const ycDirectoryRef = useRef(null);
 
     useGSAP(() => {
-        const ctx = gsap.context(() => {
-            const projects = gsap.utils.toArray(".showcase-project");
+        gsap.fromTo(
+            sectionRef.current,
+            { opacity: 0 },
+            { opacity: 1, duration: 1.5 }
+        );
 
-            projects.forEach((project, index) => {
-                gsap.fromTo(
-                    project,
-                    {
-                        y: 50,
-                        opacity: 0,
-                    },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.8,
-                        delay: 0.1 * index,
-                        scrollTrigger: {
-                            trigger: project,
-                            start: 'top 80%',
-                            once: true,
-                        }
-                    }
-                );
-            });
+        const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
 
-            gsap.fromTo(sectionRef.current,
-                {opacity: 0},
+        cards.forEach((card, index) => {
+            gsap.fromTo(
+                card,
                 {
+                    y: 50,
+                    opacity: 0,
+                },
+                {
+                    y: 0,
                     opacity: 1,
                     duration: 1,
+                    delay: 0.3 * (index + 1),
                     scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 90%",
-                        once: true,
-                    }
+                        trigger: card,
+                        start: "top bottom-=100",
+                    },
                 }
             );
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, {scope: sectionRef});
+        });
+    }, []);
 
     return (
-        <section id="work" ref={sectionRef} className="app-showcase">
+        <div id="work" ref={sectionRef} className="app-showcase">
             <div className="w-full">
                 <div className="showcaselayout">
-                    <div className="first-project-wrapper showcase-project">
+                    <div ref={rydeRef} className="first-project-wrapper">
                         <div className="image-wrapper">
-                            <a href={"https://summarist-internship-one.vercel.app"} target={"_blank"}>
-                                <img src="/images/project1.png" alt="Summarist"/>
-                            </a>
+                            <img src="/images/project1.png" alt="Ryde App Interface" />
                         </div>
                         <div className="text-content">
-                            <h2>Summarist: Your Ultimate Book Summary Companion</h2>
-                            <p className="text-white-50 md:text-xl">Dive into the world of knowledge with Summarist,
-                                the innovative app designed for busy book lovers who crave the essence of great reads
-                                without the time commitment.</p>
-                            <p className="text-white-50 md:text-xl">Framework: Next.js (version 13+, with App
-                                Router).</p>
-                            <p className="text-white-50 md:text-xl">Languages: JavaScript, TypeScript.</p>
-                            <p className="text-white-50 md:text-xl">Styling: CSS Modules, Global CSS, PostCSS,
-                                Tailwind CSS.</p>
-                            <p className="text-white-50 md:text-xl">Build Tool: Turbopack.</p>
-                            <p className="text-white-50 md:text-xl">Payment Processing: Stripe.</p>
-                        </div>
-                    </div>
-                    <div className="project-list-wrapper overflow-hidden">
-                        <div className="project showcase-project">
-                            <div className="image-wrapper bg-[#ffefdb]">
-                                <a href={"https://skinstric-a-i-internship.vercel.app"} target={"_blank"}>
-                                    <img src="/images/project2.png" alt="Skinstric"/>
-                                </a>
-                            </div>
-                            <h2>Skinstric: Revolutionize Your Skincare with AI-Powered Precision</h2>
-                            <p>Skinstric is a cutting-edge web application that leverages artificial intelligence to
-                                deliver personalized skincare insights through facial analysis. Built with a modern,
-                                scalable tech stack, the app provides a seamless user experience, from capturing images
-                                to presenting demographic predictions.
+                            <h2>
+                                On-Demand Rides Made Simple with a Powerful, User-Friendly App
+                                called Ryde
+                            </h2>
+                            <p className="text-white-50 md:text-xl">
+                                An app built with React Native, Expo, & TailwindCSS for a fast,
+                                user-friendly experience.
                             </p>
                         </div>
-                        <div className="project showcase-project">
-                            <div className="image-wrapper bg-[#ffefdb]">
-                                <a href={"https://michael-internship-eight.vercel.app"} target={"_blank"}>
-                                    <img src="/images/project3.png" alt="Ultraverse"/>
-                                </a>
+                    </div>
+
+                    <div className="project-list-wrapper overflow-hidden">
+                        <div className="project" ref={libraryRef}>
+                            <div className="image-wrapper bg-[#FFEFDB]">
+                                <img
+                                    src="/images/project2.png"
+                                    alt="Library Management Platform"
+                                />
                             </div>
-                            <h2>Ultraverse: the Ultimate NFT Market</h2>
-                            <p>Ultraverse creates a user-friendly environment designed to seamlessly create, sell, or
-                                collect NFTs</p>
+                            <h2>The Library Management Platform</h2>
+                        </div>
+
+                        <div className="project" ref={ycDirectoryRef}>
+                            <div className="image-wrapper bg-[#FFE7EB]">
+                                <img src="/images/project3.png" alt="YC Directory App" />
+                            </div>
+                            <h2>YC Directory - A Startup Showcase App</h2>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    )
-}
+        </div>
+    );
+};
 
-export default ShowcaseSection;
+export default AppShowcase;
