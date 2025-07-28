@@ -259,11 +259,6 @@ const socialImgs = [
         imgPath: "/images/linkedin.png",
         link: "https://www.linkedin.com",
     },
-    {
-        name: "resume",
-        imgPath: "/images/cert.png",
-        link: "/documents/FES_Certificate.pdf",
-    },
 ];
 
 export {
