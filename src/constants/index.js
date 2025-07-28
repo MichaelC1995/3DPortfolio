@@ -226,46 +226,25 @@ const expLogos = [
 
 const testimonials = [
     {
-        name: "Esther Howard",
-        mentions: "@estherhoward",
+        name: "Mohamed Zreika - Mentor at Frontend Simplified",
+        mentions: "https://www.linkedin.com/in/mohamed-zreika-27b2b6242/",
         review:
-            "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
+            "Michael’s portfolio is a great reflection of his skills - clean, responsive, and thoughtfully built. He consistently demonstrated reliability, attention to detail, and a strong commitment to growth throughout the program. It was a pleasure supporting him!",
         imgPath: "/images/client1.png",
     },
     {
-        name: "Wade Warren",
-        mentions: "@wadewarren",
+        name: "Hannah Mitri",
+        mentions: "Mentor at SkinstricAI",
         review:
-            "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
+            "Michael has done outstanding work on this project — it’s truly impressive. The quality and execution are spot-on.",
         imgPath: "/images/client3.png",
     },
     {
-        name: "Guy Hawkins",
-        mentions: "@guyhawkins",
+        name: "Adrian Garbowski",
+        mentions: "Mentor at Frontend Simplified",
         review:
-            "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+            "I had the opportunity to review Michael’s project, and it was very well-executed. His attention to detail and overall quality of work stood out. Based on his performance, I was happy to advance him to the next stage. I’m confident he will continue to bring the same level of excellence to future projects.",
         imgPath: "/images/client2.png",
-    },
-    {
-        name: "Marvin McKinney",
-        mentions: "@marvinmckinney",
-        review:
-            "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-        imgPath: "/images/client5.png",
-    },
-    {
-        name: "Floyd Miles",
-        mentions: "@floydmiles",
-        review:
-            "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-        imgPath: "/images/client4.png",
-    },
-    {
-        name: "Albert Flores",
-        mentions: "@albertflores",
-        review:
-            "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-        imgPath: "/images/client6.png",
     },
 ];
 

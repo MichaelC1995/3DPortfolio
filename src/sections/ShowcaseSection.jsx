@@ -7,9 +7,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AppShowcase = () => {
     const sectionRef = useRef(null);
-    const rydeRef = useRef(null);
-    const libraryRef = useRef(null);
-    const ycDirectoryRef = useRef(null);
+    const firstRef = useRef(null);
+    const secondRef = useRef(null);
+    const thirdRef = useRef(null);
 
     useGSAP(() => {
         gsap.fromTo(
@@ -18,7 +18,7 @@ const AppShowcase = () => {
             { opacity: 1, duration: 1.5 }
         );
 
-        const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
+        const cards = [firstRef.current, secondRef.current, thirdRef.current];
 
         cards.forEach((card, index) => {
             gsap.fromTo(
@@ -45,7 +45,7 @@ const AppShowcase = () => {
         <div id="work" ref={sectionRef} className="app-showcase">
             <div className="w-full">
                 <div className="showcaselayout">
-                    <div className="first-project-wrapper showcase-project">
+                    <div className="first-project-wrapper showcase-project" ref={firstRef}>
                         <div className="image-wrapper">
                             <a
                                 href="https://summarist-internship-one.vercel.app"
@@ -78,7 +78,7 @@ const AppShowcase = () => {
                         </div>
                     </div>
                     <div className="project-list-wrapper overflow-hidden">
-                        <div className="project showcase-project">
+                        <div className="project showcase-project" ref={secondRef}>
                             <div className="image-wrapper bg-[#ffefdb]">
                                 <a
                                     href="https://skinstric-a-i-internship.vercel.app"
@@ -97,7 +97,7 @@ const AppShowcase = () => {
                                 to presenting demographic predictions.
                             </p>
                         </div>
-                        <div className="project showcase-project">
+                        <div className="project showcase-project" ref={thirdRef}>
                             <div className="image-wrapper bg-[#ffefdb]">
                                 <a
                                     href="https://michael-internship-eight.vercel.app"
