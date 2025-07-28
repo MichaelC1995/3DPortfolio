@@ -22,7 +22,11 @@ const Navbar = () => {
                     <ul>
                         {navLinks.map(({link, name}) => (
                             <li key={name} className={"group"}>
-                                <a href={link}>
+                                <a
+                                    href={link}
+                                    target={name === "My Resume" ? "_blank" : undefined}
+                                    rel={name === "My Resume" ? "noopener noreferrer" : undefined}
+                                >
                                     <span>{name}</span>
                                     <span className={"underline"}></span>
                                 </a>

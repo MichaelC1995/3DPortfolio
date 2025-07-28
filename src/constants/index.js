@@ -15,6 +15,10 @@ const navLinks = [
         name: "Testimonials",
         link: "#testimonials",
     },
+    {
+        name: "My Resume",
+        link: "/documents/Michael%20Chatellier%20-%20Frontend%20Developer%20Resume.pdf",
+    },
 ];
 
 const words = [
